@@ -21,6 +21,7 @@ after lunch:
   
   - who's our target audience? 
   - how is our application useful? (what are our highlight features? if any)
+  - name of our appllication + team.  
   
   TODO: 
   have a springboot application setup, including: model, repository, controller, security (services, tests, openAPI and custom queries can wait);
