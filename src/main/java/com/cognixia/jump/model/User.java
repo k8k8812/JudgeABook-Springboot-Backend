@@ -17,7 +17,6 @@ import javax.persistence.Table;
 import com.cognixia.jump.model.User.Role;
 
 @Entity
-@Table(name="user")
 public class User implements Serializable {
 
 	public enum Role {
@@ -35,6 +34,9 @@ public class User implements Serializable {
 	
 	@Column(nullable = false)
 	private String password;
+	
+	@Column(columnDefinition = "boolean default true")
+	private boolean enabled;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
