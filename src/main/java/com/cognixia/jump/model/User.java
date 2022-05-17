@@ -47,16 +47,17 @@ public class User implements Serializable {
 	
 	
 	
-	public User(Long id, String username, String password, Role role) {
+	public User(Long id, String username, String password, boolean enabled, Role role) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.enabled = enabled;
 		this.role = role;
 	}
 	
 	public User() {
-		this(-1L, "N/A", "N/A", Role.ROLE_USER);
+		this(-1L, "N/A", "N/A", false, Role.ROLE_USER);
 	}
 
 	
@@ -83,6 +84,14 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public Role getRole() {
