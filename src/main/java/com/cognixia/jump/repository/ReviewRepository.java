@@ -7,3 +7,4 @@ import com.cognixia.jump.model.Review;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
 }
+

@@ -7,3 +7,4 @@ import com.cognixia.jump.model.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 }
+
