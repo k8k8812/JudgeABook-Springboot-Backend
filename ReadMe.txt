@@ -35,7 +35,4 @@ after lunch:
   
   have our centralized aws vpc-db setup, put our db on it and everyone will have access to it. 
   
-
-Hi Sam
-  
   
