@@ -1,6 +1,7 @@
 package com.cognixia.jump.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -43,6 +44,15 @@ public class Review implements Serializable {
 		this.book = book;
 		this.user = user;
 	}
+	
+	
+
+	public Review() {
+		this(-1L, "N/A", null, null);
+	}
+	
+
+
 
 	public Long getId() {
 		return id;

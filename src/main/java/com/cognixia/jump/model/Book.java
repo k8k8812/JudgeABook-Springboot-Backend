@@ -2,6 +2,7 @@ package com.cognixia.jump.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,6 +18,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import com.cognixia.jump.model.User.Role;
 
 @Entity
 @Table(name="book")
@@ -55,6 +58,10 @@ public class Book implements Serializable{
 		this.reviews = reviews;
 	}
 
+	public Book() {
+		this(-1L, "N/A", "N/A", "N/A", "N/A", new ArrayList<Review>());
+	}
+	
 	public Long getId() {
 		return id;
 	}

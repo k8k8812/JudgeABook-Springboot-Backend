@@ -30,7 +30,7 @@ public class MyUserDetails implements UserDetails {
 	public MyUserDetails(User user) {
 		this.username = user.getUsername();
 		this.password = user.getPassword();
-		//this.enabled = user.isEnabled();
+		this.enabled = user.isEnabled();
 		this.authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRole().toString()));
 	}
 	

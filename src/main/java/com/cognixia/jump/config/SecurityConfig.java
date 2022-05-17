@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(HttpMethod.DELETE, "/api/book/delete").hasRole("ADMIN") // delete book 
 			.antMatchers(HttpMethod.POST, "/api/register").permitAll()		// anyone can register an account
 			.antMatchers(HttpMethod.POST, "/api/authenticate").permitAll()	// anyone can login with their credentials
-            .antMatchers("/**").hasRole("ADMIN")							// match for any url
+           // .antMatchers("/**").hasRole("ADMIN")							// match for any url
 			.and().sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		

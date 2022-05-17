@@ -62,6 +62,7 @@ public class UserController {
 		User registerUser = new User();
 		registerUser.setUsername(newUser.getUsername());
 		registerUser.setPassword(encodedPassword);
+		registerUser.setEnabled(true);
 		registerUser.setRole(Role.valueOf("ROLE_USER"));
 		
 		userRepo.save(registerUser);
