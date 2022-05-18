@@ -27,7 +27,6 @@ import com.cognixia.jump.model.User.Role;
 import com.cognixia.jump.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebMvcTest(controllers = UserController.class)
 @ActiveProfiles("test")
 public class UserControllerTest {
 
@@ -42,17 +41,16 @@ public class UserControllerTest {
 
     private List<User> userList;
 	
-	
-    @BeforeAll
-    void setUp() {
-        this.userList = new ArrayList<>();
-        this.userList.add(new User(1L, "jessica", "jessica", true, Role.ROLE_USER));
-        this.userList.add(new User(1L, "rachel", "rachel", true, Role.ROLE_USER));
-        this.userList.add(new User(1L, "nathan", "nathan", true, Role.ROLE_USER));
-        this.userList.add(new User(1L, "james", "james", true, Role.ROLE_USER));
-        this.userList.add(new User(1L, "harper", "harper", true, Role.ROLE_ADMIN));
-
-    }
+//	
+//    void setUp() {
+//        this.userList = new ArrayList<>();
+//        this.userList.add(new User(1L, "jessica", "jessica", true, Role.ROLE_USER));
+//        this.userList.add(new User(1L, "rachel", "rachel", true, Role.ROLE_USER));
+//        this.userList.add(new User(1L, "nathan", "nathan", true, Role.ROLE_USER));
+//        this.userList.add(new User(1L, "james", "james", true, Role.ROLE_USER));
+//        this.userList.add(new User(1L, "harper", "harper", true, Role.ROLE_ADMIN));
+//
+//    }
 //	
 //    @Test
 //    void shouldFetchAllUsers() throws Exception {

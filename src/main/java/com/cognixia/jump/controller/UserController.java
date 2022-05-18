@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,7 @@ import com.cognixia.jump.repository.UserRepository;
 import com.cognixia.jump.service.MyUserDetailsService;
 import com.cognixia.jump.util.JwtUtil;
 
+@CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false" )
 @RequestMapping("/api")
 @RestController
 public class UserController {
