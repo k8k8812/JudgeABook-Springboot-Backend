@@ -9,6 +9,8 @@ import com.cognixia.jump.model.Book;
 public interface BookRepository extends JpaRepository<Book, Long> {
 
 	Optional<Book> findByName(String name);
+
+	Optional<Book> findByAuthor(String author);
 	
 }
 

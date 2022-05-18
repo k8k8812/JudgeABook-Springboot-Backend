@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "9915d975-6581-4869-855f-97b37275df87",
+		"name": "JudgeABookAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": {{username}},\r\n    \"password\": {{password}}\r\n}"
+						},
+						"url": {
+							"raw": "{{host ip}}{{port number}}{{prefix}}/register",
+							"host": [
+								"{{host ip}}{{port number}}{{prefix}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": {{username}},\r\n    \"password\": {{password}}\r\n}"
+						},
+						"url": {
+							"raw": "{{host ip}}{{port number}}{{prefix}}/authenticate",
+							"host": [
+								"{{host ip}}{{port number}}{{prefix}}"
+							],
+							"path": [
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"sweet \"",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host ip}}{{port number}}{{prefix}}/test",
+							"host": [
+								"{{host ip}}{{port number}}{{prefix}}"
+							],
+							"path": [
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host ip}}{{port number}}{{prefix}}/user",
+							"host": [
+								"{{host ip}}{{port number}}{{prefix}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host ip}}{{port number}}{{prefix}}/user/current",
+							"host": [
+								"{{host ip}}{{port number}}{{prefix}}"
+							],
+							"path": [
+								"user",
+								"current"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Get All Books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host ip}}{{port number}}{{prefix}}/book",
+							"host": [
+								"{{host ip}}{{port number}}{{prefix}}"
+							],
+							"path": [
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host ip}}{{port number}}{{prefix}}/book/{{id}}",
+							"host": [
+								"{{host ip}}{{port number}}{{prefix}}"
+							],
+							"path": [
+								"book",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Holes\",\r\n        \"genre\": \"adventure\",\r\n        \"author\": \"Louis Sacher\",\r\n        \"description\":  \"Teen boy is sent to detention center.\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host ip}}{{port number}}{{prefix}}/book/add",
+							"host": [
+								"{{host ip}}{{port number}}{{prefix}}"
+							],
+							"path": [
+								"book",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host ip}}{{port number}}{{prefix}}/book/name/{{name}}",
+							"host": [
+								"{{host ip}}{{port number}}{{prefix}}"
+							],
+							"path": [
+								"book",
+								"name",
+								"{{name}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Book By Author",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host ip}}{{port number}}{{prefix}}/book/author/{{name}}",
+							"host": [
+								"{{host ip}}{{port number}}{{prefix}}"
+							],
+							"path": [
+								"book",
+								"author",
+								"{{name}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": []
+		}
+	]
+}

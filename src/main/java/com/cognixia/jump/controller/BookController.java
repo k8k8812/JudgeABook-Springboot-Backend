@@ -32,10 +32,24 @@ public class BookController {
 	
 	
 	@GetMapping("/book/{id}")
-	public Book getBook(@PathVariable long id) throws ResourceNotFoundException {
+	public Book getBookById(@PathVariable long id) throws ResourceNotFoundException {
 		
 		return bookRepo.findById(id).get();
 	}
+	
+	
+	@GetMapping("/book/author/{author}")
+	public Book getBookByAuthor(@PathVariable String author) throws ResourceNotFoundException {
+		
+		return bookRepo.findByAuthor(author).get();
+	}
+	
+	
+	@GetMapping("/book/name/{name}")
+	public Book getBookByName(@PathVariable String name) throws ResourceNotFoundException {
+		
+		return bookRepo.findByName(name).get();
+	}	
 	
 	
 	@PostMapping("/book/add")

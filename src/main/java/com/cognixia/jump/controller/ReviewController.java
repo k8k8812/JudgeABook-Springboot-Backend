@@ -1,6 +1,75 @@
 package com.cognixia.jump.controller;
 
-public class ReviewController {
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.cognixia.jump.model.Book;
+import com.cognixia.jump.model.Review;
+import com.cognixia.jump.model.User;
+import com.cognixia.jump.repository.BookRepository;
+import com.cognixia.jump.repository.ReviewRepository;
+import com.cognixia.jump.repository.UserRepository;
+import com.cognixia.jump.util.JwtUtil;
+
+public class ReviewController {
+	
+	@Autowired
+	ReviewRepository reviewRepo;
+
+	@Autowired
+	UserRepository userRepo;
+	
+	@Autowired
+	BookRepository bookRepo;
+	
+	@Autowired
+	private JwtUtil jwtUtil;
+	
+	
+	@GetMapping("/review/user/current")
+	public List<Review> getOrdersByUserId(HttpServletRequest request){
+		
+		final String authorizationHeader = request.getHeader("Authorization");
+		
+		String username = null;
+		String Jwt = null;
+		if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+			
+			Jwt = authorizationHeader.substring(7);
+			username = jwtUtil.extractUsername(Jwt);
+			User current = userRepo.findByUsername(username).get();
+			
+			return current.getReviews();
+
+		}
+		return null;
+		
+	}
+	
+//	
+//	@PostMapping("/review/add/{userId}/{bookId}")
+//	public ResponseEntity<Review> addReview(@PathVariable Long userId, Long bookId){
+//		Review newReview = new Review();
+//		Book reviewBook = bookRepo.findById(bookId).get();
+//		//ArrayList<Book> bookList = new ArrayList<Book>();
+//		//bookList.add(addBook);
+//		
+//		newReview.getBookOrders().add(addBook);
+//		userRepo.getById(userId).getOrders().add(newReview);
+//				
+//		return null;
+//		
+//	}
+	
+	
+	
 }
 

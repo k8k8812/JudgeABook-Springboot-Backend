@@ -78,64 +78,37 @@ public class Book implements Serializable{
 		this.name = name;
 	}
 
-	/**
-	 * @return the genre
-	 */
 	public String getGenre() {
 		return genre;
 	}
 
-	/**
-	 * @param genre the genre to set
-	 */
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 
-	/**
-	 * @return the author
-	 */
 	public String getAuthor() {
 		return author;
 	}
 
-	/**
-	 * @param author the author to set
-	 */
 	public void setAuthor(String author) {
 		this.author = author;
 	}
 
-	/**
-	 * @return the description
-	 */
 	public String getDescription() {
 		return description;
 	}
 
-	/**
-	 * @param description the description to set
-	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	/**
-	 * @return the orders
-	 */
 	public List<Review> getReviews() {
 		return reviews;
 	}
 
-	/**
-	 * @param orders the orders to set
-	 */
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
-
-	
-	
 	
 }
 
