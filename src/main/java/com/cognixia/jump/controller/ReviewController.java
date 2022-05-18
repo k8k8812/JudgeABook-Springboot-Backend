@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.cognixia.jump.model.Book;
 import com.cognixia.jump.model.Review;
@@ -19,6 +22,9 @@ import com.cognixia.jump.repository.ReviewRepository;
 import com.cognixia.jump.repository.UserRepository;
 import com.cognixia.jump.util.JwtUtil;
 
+@CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false" )
+@RequestMapping("/api")
+@RestController
 public class ReviewController {
 	
 	@Autowired
