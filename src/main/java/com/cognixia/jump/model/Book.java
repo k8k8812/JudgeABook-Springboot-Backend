@@ -43,25 +43,33 @@ public class Book implements Serializable{
 	
 	@Column
 	private String description;
+	
+	@Column
+	private String image;
 
 	@OneToMany(mappedBy="book", cascade=CascadeType.ALL)
 	private List<Review> reviews;
 		
 
-	public Book(Long id, @NotBlank String name, String genre, String author, String description, List<Review> reviews) {
+
+	
+	public Book() {
+		this(-1L, "N/A", "N/A", "N/A", "N/A", "N/A", new ArrayList<Review>());
+	}
+
+
+	public Book(Long id, @NotBlank String name, String genre, String author, String description, String image,
+			List<Review> reviews) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.genre = genre;
 		this.author = author;
 		this.description = description;
+		this.image = image;
 		this.reviews = reviews;
 	}
 
-	public Book() {
-		this(-1L, "N/A", "N/A", "N/A", "N/A", new ArrayList<Review>());
-	}
-	
 	public Long getId() {
 		return id;
 	}
@@ -101,7 +109,15 @@ public class Book implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public String getImage() {
+		return image;
+	}
 
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
 	public List<Review> getReviews() {
 		return reviews;
 	}
