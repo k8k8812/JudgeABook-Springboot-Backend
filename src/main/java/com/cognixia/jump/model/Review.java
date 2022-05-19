@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,10 +15,17 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 
 @Entity
 @Table(name="review")
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "id")
 public class Review implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,7 +37,8 @@ public class Review implements Serializable {
 	@NotNull
 	private String detail;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JsonBackReference
 	@JoinColumn(name="book_id", referencedColumnName="id")
 	private Book book;
 	
