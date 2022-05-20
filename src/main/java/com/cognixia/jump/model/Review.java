@@ -55,7 +55,7 @@ public class Review implements Serializable {
 
 
 	public Review(Long id, @NotNull String detail, String rating, Book book, User user) {
-		super();
+
 		this.id = id;
 		this.detail = detail;
 		this.rating = rating;
@@ -63,14 +63,10 @@ public class Review implements Serializable {
 		this.user = user;
 	}
 
-
-
 	public Review() {
 		this(-1L, "N/A", "N/A", null, null);
 	}
 	
-
-
 
 	public Long getId() {
 		return id;
@@ -99,8 +95,6 @@ public class Review implements Serializable {
 	public String getRating() {
 		return rating;
 	}
-
-
 
 	public void setRating(String rating) {
 		this.rating = rating;
