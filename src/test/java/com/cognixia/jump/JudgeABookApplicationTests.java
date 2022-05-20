@@ -127,10 +127,9 @@ class JudgeABookApplicationTests {
     }
 	 @Test 
 	 void tokenShouldNotBeNull() {  //pass
-		
 		 assertNotNull(token);
-		 
 	 }
+	 
 		
 
 }
