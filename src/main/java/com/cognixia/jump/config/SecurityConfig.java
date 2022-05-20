@@ -58,17 +58,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         
         http.csrf().disable()
             .authorizeRequests()
-            .antMatchers("/api/user").hasRole("ADMIN")						// only admin can access all users
             .antMatchers(HttpMethod.GET, "/api/user/current").permitAll()   // show the current user and related info
-          //  .antMatchers(HttpMethod.PUT, "/api/user/update").permitAll()	// currently allows any user to update any user account.  fix in the controller
             .antMatchers(HttpMethod.GET, "/api/user/*").hasRole("ADMIN")    // get user by id
-			.antMatchers(HttpMethod.DELETE, "/api/user/*").hasRole("ADMIN") // delete user by id
-			.antMatchers(HttpMethod.GET, "/api/order").hasRole("ADMIN")		// get all orders
-            .antMatchers(HttpMethod.POST, "/api/book/add").hasRole("ADMIN") // add new book 
-            .antMatchers(HttpMethod.DELETE, "/api/book/delete").hasRole("ADMIN") // delete book 
+            .antMatchers("/api/user").hasRole("ADMIN")
+            .antMatchers(HttpMethod.POST, "/api/book/add").hasRole("ADMIN") // add new book
+            .antMatchers(HttpMethod.DELETE, "/api/book/delete/*").hasRole("ADMIN")  // delete book by id
 			.antMatchers(HttpMethod.POST, "/api/register").permitAll()		// anyone can register an account
 			.antMatchers(HttpMethod.POST, "/api/authenticate").permitAll()	// anyone can login with their credentials
-           // .antMatchers("/**").hasRole("ADMIN")							// match for any url
+			.antMatchers(HttpMethod.GET, "/api/book/*").permitAll()			// get book by id, name, or all
 			.and().sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		
