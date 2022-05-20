@@ -38,6 +38,9 @@ public class Review implements Serializable {
 	@NotNull
 	private String detail;
 	
+	@NotNull
+	private Integer rating;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JsonBackReference
 	@JoinColumn(name="book_id", referencedColumnName="id")
@@ -47,22 +50,20 @@ public class Review implements Serializable {
 	@JoinColumn(name="user_id", referencedColumnName="id")
 	private User user;
 
-	public Review(Long id, @NotNull String detail, Book book, User user) {
+	public Review(Long id, @NotNull String detail, @NotNull Integer rating, Book book, User user) {
 		super();
 		this.id = id;
 		this.detail = detail;
+		this.rating = rating;
 		this.book = book;
 		this.user = user;
 	}
 	
 	
-
 	public Review() {
-		this(-1L, "N/A", null, null);
+		this(-1L, "N/A", 1, null, null);
 	}
 	
-
-
 
 	public Long getId() {
 		return id;
@@ -78,6 +79,15 @@ public class Review implements Serializable {
 
 	public void setDetail(String detail) {
 		this.detail = detail;
+	}
+
+	
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
 	}
 
 	public Book getBook() {
