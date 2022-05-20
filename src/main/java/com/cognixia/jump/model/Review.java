@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -38,30 +39,32 @@ public class Review implements Serializable {
 	@NotNull
 	private String detail;
 	
-	@NotNull
-	private Integer rating;
+	@Column
+	private String rating;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JsonBackReference
 	@JoinColumn(name="book_id", referencedColumnName="id")
 	private Book book;
 	
+	
+
 	@ManyToOne
 	@JoinColumn(name="user_id", referencedColumnName="id")
 	private User user;
 
-	public Review(Long id, @NotNull String detail, @NotNull Integer rating, Book book, User user) {
-		super();
+
+	public Review(Long id, @NotNull String detail, String rating, Book book, User user) {
+
 		this.id = id;
 		this.detail = detail;
 		this.rating = rating;
 		this.book = book;
 		this.user = user;
 	}
-	
-	
+
 	public Review() {
-		this(-1L, "N/A", 1, null, null);
+		this(-1L, "N/A", "N/A", null, null);
 	}
 	
 
@@ -81,15 +84,6 @@ public class Review implements Serializable {
 		this.detail = detail;
 	}
 
-	
-	public Integer getRating() {
-		return rating;
-	}
-
-	public void setRating(Integer rating) {
-		this.rating = rating;
-	}
-
 	public Book getBook() {
 		return book;
 	}
@@ -98,6 +92,14 @@ public class Review implements Serializable {
 		this.book = book;
 	}
 
+	public String getRating() {
+		return rating;
+	}
+
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
+	
 	public User getUser() {
 		return user;
 	}
