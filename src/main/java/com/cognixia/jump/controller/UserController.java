@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cognixia.jump.exceptions.InvalidLoginException;
 import com.cognixia.jump.exceptions.ResourceNotFoundException;
 import com.cognixia.jump.model.AuthenticationRequest;
 import com.cognixia.jump.model.AuthenticationResponse;
@@ -73,13 +74,13 @@ public class UserController {
 	}
 	
 	@PostMapping("/authenticate")
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest request) throws Exception {
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest request) throws InvalidLoginException {
 		
 		try {
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 		} catch (Exception e) {
-			throw new Exception("Incorrect username or password", e);
+			throw new InvalidLoginException("Incorrect username or password", e);
 		}
 		
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
