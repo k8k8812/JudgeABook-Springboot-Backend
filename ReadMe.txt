@@ -1,9 +1,3 @@
-hi
-hi sam
-hi guys!
-
-
-
 May 16 before lunch: 
 
   concetualized + diagnoisis:  
