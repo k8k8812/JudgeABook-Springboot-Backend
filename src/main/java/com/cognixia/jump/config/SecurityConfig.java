@@ -58,7 +58,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         
         http.csrf().disable()
             .authorizeRequests()
-            .antMatchers("/api/user").hasRole("ADMIN")						// only admin can access all users
+//            .antMatchers("/api/user").hasRole("ADMIN")
+            .antMatchers("/api/user").hasRole("USER")
+            // only admin can access all users
             .antMatchers(HttpMethod.GET, "/api/user/current").permitAll()   // show the current user and related info
           //  .antMatchers(HttpMethod.PUT, "/api/user/update").permitAll()	// currently allows any user to update any user account.  fix in the controller
             .antMatchers(HttpMethod.GET, "/api/user/*").hasRole("ADMIN")    // get user by id

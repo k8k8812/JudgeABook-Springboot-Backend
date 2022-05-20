@@ -1,19 +1,21 @@
 package com.cognixia.jump.ontrollertest;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.cognixia.jump.controller.UserController;
@@ -21,9 +23,9 @@ import com.cognixia.jump.model.User;
 import com.cognixia.jump.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-//@RunWith(SpringRunner.class)
-@WebMvcTest(UserController.class)
-//@ActiveProfiles("test")
+@RunWith(SpringRunner.class)
+@WebMvcTest(controllers = UserController.class)
+@ActiveProfiles("test")
 public class UserControllerTest {
 
     @Autowired
@@ -35,11 +37,12 @@ public class UserControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
     
-   
+    //store jwt into token;
+    private String token;
     private List<User> userList;
     
 	
-	
+	@BeforeAll
     void setUp() {
 //        this.userList = new ArrayList<>();
 //        this.userList.add(new User(1L, "jessica", "jessica", true, Role.ROLE_USER));
@@ -51,17 +54,20 @@ public class UserControllerTest {
     }
     
     @Test 
-    public void getAllusersAPI() throws Exception {
+    void getAllusersAPI() throws Exception {
     	mockMvc.perform( 
     			MockMvcRequestBuilders
     			.get("/api/user")
     			.accept(MediaType.APPLICATION_JSON))
-    	
-		        .andDo(print())	
-		        .andExpect(status().isOk())
+		    	.andExpect(status().isOk())
 		        .andExpect(MockMvcResultMatchers.jsonPath("$.user").exists())
 		        .andExpect(MockMvcResultMatchers.jsonPath("$.user.user[*].username").isNotEmpty());
-    			
+    	
+    	MockMvcResultHandlers.print();
+    	
+    	//send header 
+    	//store token into header. 
+    
     }
 //	
 //    @Test
