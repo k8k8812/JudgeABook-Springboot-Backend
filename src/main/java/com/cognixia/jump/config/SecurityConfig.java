@@ -29,14 +29,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         
-        auth.inMemoryAuthentication()
-            .withUser("user")  
-            .password(passwordEncoder().encode("password1")) 
-            .roles("USER")
-            .and()            
-            .withUser("admin")
-            .password(passwordEncoder().encode("password2"))
-            .roles("ADMIN");
+//        auth.inMemoryAuthentication()
+//            .withUser("user")  
+//            .password(passwordEncoder().encode("password1")) 
+//            .roles("USER")
+//            .and()            
+//            .withUser("admin")
+//            .password(passwordEncoder().encode("password2"))
+//            .roles("ADMIN");
         
         auth.userDetailsService(userDetailsService);
     }
@@ -58,6 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         
         http.csrf().disable()
             .authorizeRequests()
+            // only admin can access all users
             .antMatchers(HttpMethod.GET, "/api/user/current").permitAll()   // show the current user and related info
             .antMatchers(HttpMethod.GET, "/api/user/*").hasRole("ADMIN")    // get user by id
             .antMatchers("/api/user").hasRole("ADMIN")
